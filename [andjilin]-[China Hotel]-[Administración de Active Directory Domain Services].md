@@ -32,6 +32,8 @@ Configurar un entorno de laboratorio con **Hyper‑V**, un **controlador de domi
    * Máquinas virtuales: `C:\VirtualMachines`
    * VHDs: `C:\VirtualMachines\VHDs`
 7. Crear red NAT desde PowerShell (admin):
+<img width="1715" height="876" alt="image" src="https://github.com/user-attachments/assets/d48ed155-868e-4b78-a34c-600067144952" />
+
 
 ```
 New-VMSwitch -SwitchName "NATSwitch" -SwitchType Internal
