@@ -48,7 +48,7 @@ New-NetNat -Name "NATNetwork" –InternalIPInterfaceAddressPrefix "10.10.10.0/24
 ### 1. Crear máquina virtual
 
 1. Hyper‑V → **Nuevo → Máquina virtual**.
-2. Nombre: **ChinaHotel**.
+2. Nombre: **TAILWIND-DC1**.
 3. Generación 2.
 4. RAM: **4096 MB**, con memoria dinámica.
 5. Red: **NAT**.
@@ -74,19 +74,19 @@ DNS Secundario: 8.8.8.8
 <img width="397" height="452" alt="image" src="https://github.com/user-attachments/assets/a0407afd-509d-46bd-8996-24804d07dad2" />
 
 
-6. Cambiar nombre del equipo → **CHINAHOTEL-DC1** y reiniciar.
+6. Cambiar nombre del equipo → **TAILWIND-DC1** y reiniciar.
 <img width="739" height="330" alt="image" src="https://github.com/user-attachments/assets/1c6bc375-6a4f-4965-a682-6c2b0cf576e4" />
 
 ---
 
-## 🌐 Promocionar China Hotel a Controlador de Dominio
+## 🌐 Promocionar TAILWIND-DC1 a Controlador de Dominio
 
 1. Abrir **Administrador del servidor**.
 2. **Agregar roles y características**.
 3. Seleccionar rol: **Servicios de dominio de Active Directory**.
 4. Instalar.
 5. Notificación → **Promocionar este servidor a controlador de dominio**.
-6. Crear **nuevo bosque** → Dominio raíz: `chinahotel.internal`.
+6. Crear **nuevo bosque** → Dominio raíz: `tailwindtrader.internal`.
 7. Contraseña DSRM: `Pa55w.rdPa55w.rd`.
 8. Finalizar e instalar (reinicio automático).
 
@@ -97,7 +97,7 @@ DNS Secundario: 8.8.8.8
 ## 1. Crear VM ChinaHotelMiembro1
 
 1. Hyper‑V → Nueva máquina virtual.
-2. Nombre: **ChinaHotelMiembro1**.
+2. Nombre: **TAILWIND-MBR1**.
 3. Generación 2.
 4. RAM 4096 MB.
 5. NATSwitch.
@@ -123,14 +123,14 @@ DNS Secundario: 8.8.8.8
 
 ---
 
-# 🔗 Unir TAILWIN-MBR1 al dominio
+# 🔗 Unir TAILWIND-MBR1 al dominio
 
 1. Abrir **Propiedades del sistema**.
-2. Miembro de → **Dominio: CHINAHOTEL**.
+2. Miembro de → **Dominio: TAILWINDTRADERS**.
 3. Credenciales:
 
 ```
-Usuario: TAILWINTRADERS\Administrator
+Usuario: TAILWINDTRADERS\Administrator
 Contraseña: Pa55w.rdPa55w.rd
 ```
 <img width="791" height="466" alt="image" src="https://github.com/user-attachments/assets/0bfbdf84-ce4d-4638-976c-0551d6be4f37" />
