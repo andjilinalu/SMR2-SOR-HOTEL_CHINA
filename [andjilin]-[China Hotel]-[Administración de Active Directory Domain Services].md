@@ -692,10 +692,6 @@ Domain Admins
 
 # ♻️ Habilitar la Papelera de reciclaje de Active Directory
 
-Esta función permite **recuperar objetos eliminados** (usuarios, grupos, OU) sin restauraciones complejas.
-
-⚠️ *Nota*: Una vez habilitada, **no puede deshabilitarse**.
-
 ## Pasos
 
 1. En **TAILWIND-DC1**, abrir el **Centro administrativo de Active Directory**.
@@ -708,6 +704,9 @@ Habilitar papelera de reciclaje
 
 4. Confirmar la advertencia inicial.
 5. Confirmar la advertencia sobre latencia de replicación.
+
+(No me salia nada de bin / papelera)
+<img width="683" height="631" alt="image" src="https://github.com/user-attachments/assets/17ee72f3-d42f-4d9e-81d9-4d5cfd92b26e" />
 
 ---
 
