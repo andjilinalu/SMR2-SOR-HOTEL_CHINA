@@ -623,14 +623,15 @@ Bosque: tailwindtraders.internal
 
 3. Clic derecho sobre **Directiva de dominio predeterminada** → **Editar**.
 4. Navegar a:
+(En esta parte el manual de Microsoft esta mal, en vez de salirte Politicas en la maquina lo que salen son directivas, lo he corregido para que este bien)
 
 ```
 Configuración del equipo
- → Políticas
+ → Directivas
    → Configuración de Windows
      → Configuración de seguridad
-       → Políticas de cuenta
-         → Política de contraseñas
+       → Directivas de cuenta
+         → Directiva de contraseñas
 ```
 
 5. Abrir **Longitud mínima de la contraseña**.
@@ -639,6 +640,7 @@ Configuración del equipo
 ```
 14 caracteres
 ```
+<img width="814" height="559" alt="image" src="https://github.com/user-attachments/assets/829832cd-15a3-43ea-b1cc-783152960a68" />
 
 7. Aplicar cambios y cerrar el editor.
 8. Cerrar la consola de Administración de directivas de grupo.
