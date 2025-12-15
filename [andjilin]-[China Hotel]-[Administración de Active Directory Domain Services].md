@@ -223,10 +223,11 @@ Contraseña: Pa55w.rdPa55w.rd
 10. Elegir **Agregar un controlador de dominio a un dominio existente**.
 11. Verificar el dominio: `tailwindtraders.internal`.
 <img width="763" height="562" alt="image" src="https://github.com/user-attachments/assets/e042d208-da90-493b-a2f7-632c09cf93f6" />
-13. Reautenticarse como Administrator.
+
+12. Reautenticarse como Administrator.
 <img width="454" height="339" alt="image" src="https://github.com/user-attachments/assets/e2e41b4b-043c-49fb-8f9c-db85f1c20d2d" />
 
-15. Introducir la contraseña **DSRM**:
+13. Introducir la contraseña **DSRM**:
 
 ```
 Pa55w.rdPa55w.rd
