@@ -331,5 +331,256 @@ La infraestructura de Active Directory ahora cuenta con:
 * Rol FSMO transferido
 * Sitio y subred configurados
 
+
 #  Configuración de operaciones de administración de usuarios
 
+**Objetivo:**
+
+Gestionar **usuarios, grupos y unidades organizativas (OU)** en Active Directory, aplicando buenas prácticas de administración como delegación de permisos, usuarios protegidos, atributos de búsqueda y control de cuentas.
+
+---
+
+# 🧩 Índice
+
+1. [Crear Unidades Organizativas (OU)](#crear-unidades-organizativas-ou)
+2. [Crear usuarios](#crear-usuarios)
+3. [Crear grupo Sydney Administrators](#crear-grupo-sydney-administrators)
+4. [Configurar usuario como Protected User](#configurar-usuario-como-protected-user)
+5. [Delegar permisos a un grupo sobre una OU](#delegar-permisos-a-un-grupo-sobre-una-ou)
+6. [Configurar atributo City y búsqueda](#configurar-atributo-city-y-búsqueda)
+7. [Deshabilitar usuario Melbourne](#deshabilitar-usuario-melbourne)
+8. [Restablecer contraseña del usuario Brisbane](#restablecer-contraseña-del-usuario-brisbane)
+9. [Diagramas de flujo](#diagramas-de-flujo)
+
+---
+
+# 🗂️ Crear Unidades Organizativas (OU)
+
+Se crean tres OU para organizar los objetos del dominio por ubicación.
+
+## Pasos
+
+1. En **TAILWIND-DC1**, abrir **Usuarios y equipos de Active Directory** desde **Herramientas**.
+2. Clic derecho sobre el dominio `tailwindtraders.internal`.
+3. Seleccionar **Nuevo → Unidad organizativa**.
+4. Crear las siguientes OU:
+
+   * **Sydney**
+   * **Melbourne**
+   * **Brisbane**
+<img width="753" height="526" alt="image" src="https://github.com/user-attachments/assets/f5919d7f-3cff-45b8-93b6-db79885e3622" />
+
+---
+
+# 👤 Crear usuarios
+
+Se crean usuarios contratistas y se configura la expiración de la cuenta.
+
+## Pasos
+
+1. En **TAILWIND-DC1**, abrir **Usuarios y equipos de Active Directory**.
+2. Clic derecho sobre la OU **Sydney → Nuevo → Usuario**.
+3. Completar los campos:
+
+```
+Nombre completo: SydneyContractor
+Nombre de inicio de sesión: SydneyContractor
+```
+<img width="432" height="376" alt="image" src="https://github.com/user-attachments/assets/4d53c6e9-f6ef-4436-b048-c854dde18337" />
+
+4. Establecer contraseña:
+
+```
+Pa55w.rdPa55w.rd
+```
+<img width="429" height="371" alt="image" src="https://github.com/user-attachments/assets/a74aa596-0a27-4628-972f-0bcb45015296" />
+
+5. Finalizar el asistente.
+6. Abrir las propiedades del usuario **SydneyContractor**.
+7. En la pestaña **Cuenta**, configurar **Expiración de la cuenta**:
+
+```
+Fecha: 1 de enero de 2030
+```
+<img width="452" height="538" alt="image" src="https://github.com/user-attachments/assets/dde376e0-48dd-41b3-816d-b64473154161" />
+
+8. Clic derecho sobre **SydneyContractor → Copiar**.
+9. Crear los siguientes usuarios:
+
+   * **MelbourneContractor**
+   * **BrisbaneContractor**
+<img width="753" height="529" alt="image" src="https://github.com/user-attachments/assets/e823f794-0419-4e3f-81b6-acea421d0673" />
+10. Mover:
+
+* **MelbourneContractor** a la OU **Melbourne**
+* **BrisbaneContractor** a la OU **Brisbane**
+
+11. Confirmar los avisos de movimiento.
+
+
+---
+
+# 👥 Crear grupo Sydney Administrators
+
+Se crea un grupo de seguridad para administración delegada.
+
+## Pasos
+
+1. En **Usuarios y equipos de Active Directory**, clic derecho sobre la OU **Sydney**.
+2. Seleccionar **Nuevo → Grupo**.
+3. Configurar:
+
+```
+Nombre del grupo: Sydney Administrators
+Ámbito: Universal
+```
+
+4. Abrir el usuario **SydneyContractor**.
+5. Pestaña **Miembro de → Agregar**.
+6. Añadir:
+
+```
+Sydney Administrators
+```
+<img width="761" height="529" alt="image" src="https://github.com/user-attachments/assets/736909d8-a92e-4a77-a6d4-104ebd456b8d" />
+
+7. Confirmar cambios.
+
+---
+
+# 🛡️ Configurar usuario como Protected User
+
+Esta opción aumenta la seguridad del usuario frente a ataques de credenciales.
+
+## Pasos
+
+1. Abrir **SydneyContractor**.
+2. Pestaña **Miembro de → Agregar**.
+3. Añadir el grupo:
+
+```
+Protected Users
+```
+<img width="753" height="527" alt="image" src="https://github.com/user-attachments/assets/c05e5133-7184-445f-9137-ac09a41bdf9f" />
+
+4. Confirmar.
+
+---
+
+# 🔐 Delegar permisos a un grupo sobre una OU
+
+Se delega la capacidad de restablecer contraseñas en la OU Sydney.
+
+## Pasos
+
+1. Clic derecho sobre la OU **Sydney → Delegar control**.
+2. Siguiente en el asistente.
+3. Agregar el grupo:
+
+```
+Sydney Administrators
+```
+<img width="471" height="241" alt="image" src="https://github.com/user-attachments/assets/41a60054-3ee4-4a01-8e51-f810bf0e1489" />
+
+4. Seleccionar la tarea:
+
+```
+Restablecer contraseñas de usuario y forzar el cambio en el próximo inicio de sesión
+```
+
+<img width="496" height="392" alt="image" src="https://github.com/user-attachments/assets/ab9dd837-ad5a-4c0f-8a69-189d30b567ac" />
+
+5. Finalizar.
+
+---
+
+# 🏙️ Configurar atributo City y búsqueda
+
+Se asigna el atributo **City** a un usuario y se valida mediante búsqueda avanzada.
+
+## Pasos
+
+1. Abrir las propiedades de **SydneyContractor**.
+2. Pestaña **Dirección**.
+3. Configurar:
+
+```
+Ciudad: Sydney
+```
+<img width="448" height="537" alt="image" src="https://github.com/user-attachments/assets/65d617f2-c8a5-4a25-9dfb-2c406d2976f4" />
+
+4. Clic derecho sobre el dominio → **Buscar**.
+5. Pestaña **Avanzado**:
+
+```
+Campo: Usuario → City
+Condición: Es exactamente
+Valor: Sydney
+```
+<img width="512" height="309" alt="image" src="https://github.com/user-attachments/assets/4ffa7b12-b1c3-438a-a2d2-a0dc705131a3" />
+
+6. Ejecutar búsqueda y verificar resultados.
+<img width="517" height="507" alt="image" src="https://github.com/user-attachments/assets/15061d3b-7425-427c-a095-a499b0fa5f58" />
+
+---
+
+# 🚫 Deshabilitar usuario Melbourne
+
+## Pasos
+
+1. Abrir la OU **Melbourne**.
+2. Clic derecho sobre **MelbourneContractor**.
+3. Seleccionar **Deshabilitar cuenta**.
+4. Confirmar.
+<img width="756" height="524" alt="image" src="https://github.com/user-attachments/assets/b85f1dca-cd24-4926-a669-90bf83c6ff32" />
+
+---
+
+# 🔑 Restablecer contraseña del usuario Brisbane
+
+## Pasos
+
+1. Abrir la OU **Brisbane**.
+2. Clic derecho sobre **BrisbaneContractor → Restablecer contraseña**.
+3. Establecer la nueva contraseña:
+
+```
+Pa66w.rdPa66w.rd
+```
+<img width="749" height="527" alt="image" src="https://github.com/user-attachments/assets/59b385f6-3df5-4291-a48d-aa201355c42b" />
+
+4. Confirmar los mensajes.
+
+---
+
+# 📊 Diagramas de flujo
+
+## 🗂️ Flujo: Gestión de usuarios y OU
+
+```mermaid
+flowchart TD
+    A[Crear OU] --> B[Crear usuarios]
+    B --> C[Asignar grupos]
+    C --> D[Configurar atributos]
+    D --> E[Delegar permisos]
+```
+
+## 🔐 Flujo: Administración de cuentas
+
+```mermaid
+flowchart TD
+    A[Usuario existente] --> B[Configurar Protected User]
+    B --> C[Delegar control]
+    C --> D[Deshabilitar o resetear contraseña]
+```
+
+---
+
+# ✅ Resultado
+
+El dominio ahora cuenta con:
+
+* OU organizadas por ciudad
+* Usuarios y grupos configurados
+* Seguridad reforzada
+* Permisos delegados correctamente
