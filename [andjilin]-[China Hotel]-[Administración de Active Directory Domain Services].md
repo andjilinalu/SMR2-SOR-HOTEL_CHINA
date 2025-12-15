@@ -584,3 +584,165 @@ El dominio ahora cuenta con:
 * Usuarios y grupos configurados
 * Seguridad reforzada
 * Permisos delegados correctamente
+
+# Administrar directivas de contraseña
+
+**Objetivo:**
+
+Configurar **políticas de contraseñas en Active Directory** para reforzar la seguridad del dominio, incluyendo:
+
+* Política de contraseñas a nivel de dominio
+* Política de contraseñas de grano fino para administradores
+* Habilitación de la **Papelera de reciclaje de Active Directory**
+
+---
+
+# 🧩 Índice
+
+1. [Configurar la política de contraseñas del dominio](#configurar-la-política-de-contraseñas-del-dominio)
+2. [Configurar una política de contraseñas de grano fino](#configurar-una-política-de-contraseñas-de-grano-fino)
+3. [Habilitar la Papelera de reciclaje de Active Directory](#habilitar-la-papelera-de-reciclaje-de-active-directory)
+4. [Diagramas de flujo](#diagramas-de-flujo)
+
+---
+
+# 🔐 Configurar la política de contraseñas del dominio
+
+Esta política afecta a **todos los usuarios del dominio**, salvo aquellos que tengan políticas de grano fino aplicadas.
+
+## Pasos
+
+1. En **TAILWIND-DC1**, abrir **Administración de directivas de grupo** desde **Herramientas**.
+2. Expandir:
+
+```
+Bosque: tailwindtraders.internal
+ → Dominios
+   → tailwindtraders.internal
+```
+
+3. Clic derecho sobre **Directiva de dominio predeterminada** → **Editar**.
+4. Navegar a:
+
+```
+Configuración del equipo
+ → Políticas
+   → Configuración de Windows
+     → Configuración de seguridad
+       → Políticas de cuenta
+         → Política de contraseñas
+```
+
+5. Abrir **Longitud mínima de la contraseña**.
+6. Establecer el valor en:
+
+```
+14 caracteres
+```
+
+7. Aplicar cambios y cerrar el editor.
+8. Cerrar la consola de Administración de directivas de grupo.
+
+---
+
+# 🧬 Configurar una política de contraseñas de grano fino
+
+Las políticas de grano fino permiten aplicar **requisitos distintos** a usuarios o grupos específicos.
+
+## Pasos
+
+1. En **TAILWIND-DC1**, abrir el **Centro administrativo de Active Directory**.
+2. En **Descripción general**, seleccionar **Tailwindtraders (local)**.
+3. Abrir el contenedor:
+
+```
+Sistema
+ → Contenedor de configuración de contraseña
+```
+
+4. Clic derecho → **Nuevo → Configuración de contraseña**.
+5. Configurar los siguientes valores:
+
+```
+Nombre: Domain Admin Password Policy
+Precedencia: 1
+Longitud mínima de contraseña: 16
+```
+
+6. Guardar la política.
+7. Abrir la política creada.
+8. En **Se aplica directamente a**, hacer clic en **Agregar**.
+9. Añadir el grupo:
+
+```
+Domain Admins
+```
+
+10. Comprobar nombres y confirmar.
+
+---
+
+# ♻️ Habilitar la Papelera de reciclaje de Active Directory
+
+Esta función permite **recuperar objetos eliminados** (usuarios, grupos, OU) sin restauraciones complejas.
+
+⚠️ *Nota*: Una vez habilitada, **no puede deshabilitarse**.
+
+## Pasos
+
+1. En **TAILWIND-DC1**, abrir el **Centro administrativo de Active Directory**.
+2. Seleccionar **Tailwindtraders (local)**.
+3. En el panel derecho, hacer clic en:
+
+```
+Habilitar papelera de reciclaje
+```
+
+4. Confirmar la advertencia inicial.
+5. Confirmar la advertencia sobre latencia de replicación.
+
+---
+
+# 📊 Diagramas de flujo
+
+## 🔐 Flujo: Política de contraseñas del dominio
+
+```mermaid
+flowchart TD
+    A[Abrir GPMC] --> B[Editar Directiva de dominio predeterminada]
+    B --> C[Política de contraseñas]
+    C --> D[Establecer longitud mínima]
+    D --> E[Aplicar cambios]
+```
+
+## 🧬 Flujo: Política de grano fino
+
+```mermaid
+flowchart TD
+    A[Abrir AD Administrative Center] --> B[Configuración de contraseña]
+    B --> C[Crear nueva política]
+    C --> D[Asignar precedencia]
+    D --> E[Aplicar a Domain Admins]
+```
+
+## ♻️ Flujo: Papelera de reciclaje de AD
+
+```mermaid
+flowchart TD
+    A[Abrir AD Administrative Center] --> B[Seleccionar dominio]
+    B --> C[Habilitar papelera de reciclaje]
+    C --> D[Confirmar advertencias]
+    D --> E[Función activa]
+```
+
+---
+
+# ✅ Resultado
+
+El dominio ahora cuenta con:
+
+* Política de contraseñas reforzada a nivel global
+* Política más estricta para administradores
+* Capacidad de recuperación de objetos eliminados
+
+Documento listo para subirse a **GitHub** como archivo `.md`.
