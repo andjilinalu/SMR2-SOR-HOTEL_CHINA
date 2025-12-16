@@ -887,15 +887,17 @@ Configuración del equipo
  → Políticas
    → Configuración de Windows
      → Configuración de seguridad
-       → Políticas locales
+       → Directivas locales
          → Asignación de derechos de usuario
 ```
+<img width="791" height="562" alt="image" src="https://github.com/user-attachments/assets/5ea0080d-18c3-47a4-97e8-d318494d1d7e" />
 
 5. Abrir la directiva:
 
 ```
 Denegar inicio de sesión como servicio
 ```
+<img width="411" height="503" alt="image" src="https://github.com/user-attachments/assets/43dec6a1-4697-40cc-bcbe-a8e6eafd7aa5" />
 
 6. Marcar **Definir esta directiva**.
 7. Seleccionar **Agregar usuario o grupo**.
@@ -904,6 +906,7 @@ Denegar inicio de sesión como servicio
 ```
 Administradores de Sydney
 ```
+<img width="414" height="504" alt="image" src="https://github.com/user-attachments/assets/16a33a0d-eecd-489b-a39b-2723917a2186" />
 
 9. Confirmar todos los cuadros de diálogo.
 
@@ -921,7 +924,7 @@ flowchart TD
     D --> E[Denegar todo]
 ```
 
-## 📋 Flujo: Auditoría de cuentas
+## Flujo: Auditoría de cuentas
 
 ```mermaid
 flowchart TD
@@ -948,8 +951,4 @@ El dominio ahora dispone de:
 * Autenticación NTLM deshabilitada
 * Auditoría activa sobre cuentas de usuario
 * Restricciones de inicio de sesión por servicio
-
-
-
-
 
