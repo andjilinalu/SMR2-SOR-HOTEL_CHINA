@@ -9,12 +9,12 @@ Configurar un entorno de laboratorio con **Hyper‑V**, un **controlador de domi
 
 ## 🧩 Índice
 
-1. [Instalar Hyper‑V](#instalar-hyper-v)
-2. [Crear máquina virtual del controlador de dominio (TAILWIND-DC1)](#crear-controlador-de-dominio)
-3. [Promocionar TAILWIND-DC1 a controlador de dominio](#promocionar-dc)
-4. [Crear servidor miembro (TAILWIND-MBR1)](#crear-servidor-miembro)
-5. [Unir TAILWIND-MBR1 al dominio](#unir-mbr-al-dominio)
-6. [Diagramas de flujo](#diagramas-de-flujo)
+1. [Instalar Hyper‑V]
+2. [Crear máquina virtual del controlador de dominio (TAILWIND-DC1)]
+3. [Promocionar TAILWIND-DC1 a controlador de dominio]
+4. [Crear servidor miembro (TAILWIND-MBR1)]
+5. [Unir TAILWIND-MBR1 al dominio]
+6. [Diagramas de flujo]
 
 ---
 
@@ -192,10 +192,10 @@ Ampliar la infraestructura de **Active Directory** promoviendo un segundo contro
 
 # 🧩 Índice
 
-1. [Promover servidor miembro a controlador de dominio](#promover-servidor-miembro-a-controlador-de-dominio)
-2. [Transferir roles FSMO (RID Master)](#transferir-roles-fsmo)
-3. [Crear sitio de Active Directory y subred](#crear-sitio-de-active-directory-y-subred)
-4. [Diagramas de flujo](#diagramas-de-flujo)
+1. [Promover servidor miembro a controlador de dominio]
+2. [Transferir roles FSMO (RID Master)
+3. [Crear sitio de Active Directory y subred]
+4. [Diagramas de flujo]
 
 ---
 
@@ -342,15 +342,15 @@ Gestionar **usuarios, grupos y unidades organizativas (OU)** en Active Directory
 
 # 🧩 Índice
 
-1. [Crear Unidades Organizativas (OU)](#crear-unidades-organizativas-ou)
-2. [Crear usuarios](#crear-usuarios)
-3. [Crear grupo Sydney Administrators](#crear-grupo-sydney-administrators)
-4. [Configurar usuario como Protected User](#configurar-usuario-como-protected-user)
-5. [Delegar permisos a un grupo sobre una OU](#delegar-permisos-a-un-grupo-sobre-una-ou)
-6. [Configurar atributo City y búsqueda](#configurar-atributo-city-y-búsqueda)
-7. [Deshabilitar usuario Melbourne](#deshabilitar-usuario-melbourne)
-8. [Restablecer contraseña del usuario Brisbane](#restablecer-contraseña-del-usuario-brisbane)
-9. [Diagramas de flujo](#diagramas-de-flujo)
+1. [Crear Unidades Organizativas (OU)]
+2. [Crear usuarios]
+3. [Crear grupo Sydney Administrators]
+4. [Configurar usuario como Protected User]
+5. [Delegar permisos a un grupo sobre una OU]
+6. [Configurar atributo City y búsqueda]
+7. [Deshabilitar usuario Melbourne]
+8. [Restablecer contraseña del usuario Brisbane]
+9. [Diagramas de flujo]
 
 ---
 
@@ -599,10 +599,10 @@ Configurar **políticas de contraseñas en Active Directory** para reforzar la s
 
 # 🧩 Índice
 
-1. [Configurar la política de contraseñas del dominio](#configurar-la-política-de-contraseñas-del-dominio)
-2. [Configurar una política de contraseñas de grano fino](#configurar-una-política-de-contraseñas-de-grano-fino)
-3. [Habilitar la Papelera de reciclaje de Active Directory](#habilitar-la-papelera-de-reciclaje-de-active-directory)
-4. [Diagramas de flujo](#diagramas-de-flujo)
+1. [Configurar la política de contraseñas del dominio]
+2. [Configurar una política de contraseñas de grano fino]
+3. [Habilitar la Papelera de reciclaje de Active Directory]
+4. [Diagramas de flujo]
 
 ---
 
