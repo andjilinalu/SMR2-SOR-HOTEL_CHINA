@@ -94,8 +94,7 @@ DNS Secundario: 8.8.8.8
 
 # Crear servidor miembro
 
-## 1. Crear VM ChinaHotelMiembro1
-
+## 1. Crear VM 
 1. Hyper‑V → Nueva máquina virtual.
 2. Nombre: **TAILWIND-MBR1**.
 3. Generación 2.
