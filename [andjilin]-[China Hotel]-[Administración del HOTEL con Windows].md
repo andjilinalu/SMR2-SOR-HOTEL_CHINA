@@ -77,18 +77,28 @@ Gestionar perfiles de usuario según el rol.
 ### Perfil Controller (Finanzas)
 
 1. Usuario: `controller_finanzas`.
-2. Acceso restringido a carpetas financieras.
-3. Escritorio con:
+<img width="427" height="371" alt="image" src="https://github.com/user-attachments/assets/417c946d-4fe3-4206-ab43-1f10f81d9def" />
+<img width="436" height="377" alt="image" src="https://github.com/user-attachments/assets/d06f8863-9b8a-4937-9326-e97e4c287801" />
+
+3. Acceso restringido a carpetas financieras.
+4. Escritorio con:
 
    * Software contable
    * Sin acceso a PMS
 
-### Perfil Recepción
+controller.finanzas:
+❌ No accede a carpetas de recepción
+❌ No accede a PMS
+✅ Solo accede a:
+Carpetas financieras
+Herramientas contables
+Esto se controla siempre con grupos, nunca directamente con usuarios.
 
-1. Usuarios de recepción.
-2. Configurar **script de inicio** o GPO:
+El usuario controller.finanzas dispone de un entorno de trabajo restringido mediante pertenencia a grupos de seguridad, garantizando el principio de mínimo privilegio y la protección de la información financiera del hotel
+Es recomendable crear un grupo para finanzas, simplemente habria que darle a Usuarios -> Nuevo -> Grupo, añadir un nombre y entrar en miembros y agregar el usuario que creamos posteriormente.
+  
+<img width="431" height="451" alt="image" src="https://github.com/user-attachments/assets/e8b8dc3b-4937-4959-b298-73ee89d36aac" />
 
-   * PMS como aplicación predeterminada.
 
 ✅ Criterio cubierto: CE b
 
@@ -105,16 +115,13 @@ Gestionar cuentas de equipo del dominio.
 1. Unir equipos al dominio:
 
 ```
-PC-TPV-01
-PC-TPV-02
-PC-BUSINESS-01
+tailwindtraders.internal
 ```
+<img width="357" height="62" alt="image" src="https://github.com/user-attachments/assets/1d32e98d-ffb4-4007-829c-d063e9e4cd74" />
 
-2. Verificar creación automática de cuentas de equipo.
-3. Mover equipos a OUs específicas:
 
-   * `OU_TPV`
-   * `OU_BusinessCenter`
+<img width="364" height="60" alt="image" src="https://github.com/user-attachments/assets/fd0b00d0-7bdd-4784-92a1-85cb8aecb3d9" />
+
 
 ✅ Criterio cubierto: CE c
 
