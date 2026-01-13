@@ -133,20 +133,17 @@ tailwindtraders.internal
 
 Definir correctamente tipos y ámbitos de grupos.
 
-## Diseño
+## Creamos un grupo para cada apartado del hotel
 
-* **Grupos de seguridad** (acceso a recursos)
-* Ámbito:
-
-  * Global → Usuarios
-  * Local de dominio → Permisos
-
-Ejemplo:
+<img width="359" height="80" alt="image" src="https://github.com/user-attachments/assets/43cdeaa5-a502-4305-a85c-785f4dae0a0c" />
 
 ```
-GG_Recepción
-DL_Acceso_PMS
+GR_Recepción
+GR_Finanzas
+GR_Mantenimiento
+GR_Restaurante
 ```
+
 
 ✅ Criterio cubierto: CE d
 
@@ -156,16 +153,19 @@ DL_Acceso_PMS
 
 ## Objetivo
 
-Crear y gestionar grupos de seguridad.
-
+Creamos y gestionamos los grupos
+Para que sea funcional de verdad habría que crear los archivos y darles ciertos permisos a cada grupo.
+Por ejemplo: Solo el Grupo Finanzas puede acceder al archivo "Cuentas Financieras"
 ## Pasos
 
-1. Crear grupos:
+1. Añadimos a cada usuario con los permisos que querramos para cada apartado
+
 
 ```
-GR_Recepción_Diurna
-GR_Administración_TI
-GR_Mantenimiento
+camarero01_temp
+recep01_temp
+mant01_temp
+Controller.Finanzas
 ```
 
 2. Tipo: Seguridad
@@ -187,8 +187,8 @@ Gestionar la pertenencia de usuarios a grupos.
 2. Ejemplo:
 
 ```
-recep01_temp → GR_Recepción_Diurna
-admin01 → GR_Administración_TI
+recep01_temp → GR_Recepción
+mant01_temp → GR_Mantenimiento
 ```
 
 3. Asignar permisos NTFS y recursos compartidos a grupos.
