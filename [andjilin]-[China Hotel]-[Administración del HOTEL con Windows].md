@@ -158,7 +158,7 @@ Para que sea funcional de verdad habría que crear los archivos y darles ciertos
 Por ejemplo: Solo el Grupo Finanzas puede acceder al archivo "Cuentas Financieras"
 ## Pasos
 
-1. Añadimos a cada usuario con los permisos que querramos para cada apartado
+- Añadimos a cada usuario con los permisos que querramos para cada apartado
 
 
 ```
@@ -170,7 +170,10 @@ Controller.Finanzas
 
 2. Tipo: Seguridad
 3. Ámbito: Global
+Debería de quedarnos algo así:
+<img width="751" height="532" alt="image" src="https://github.com/user-attachments/assets/ea175640-7b51-4677-a200-7e1e27664e78" />
 
+Lo que he hecho aparte es crear una UO para tenerlo todo más ordenado, poniendo en Trabajadores-Hotel los grupos de trabajos, y creando otra carpeta para añadir los trabajadores.
 ✅ Criterio cubierto: CE e
 
 ---
@@ -183,15 +186,26 @@ Gestionar la pertenencia de usuarios a grupos.
 
 ## Pasos
 
-1. Añadir usuarios a grupos según rol.
-2. Ejemplo:
+1. Creamos la carpeta confindencial y una vez creada vamos a:
+   Propiedades -> Seguridad
+2. Una vez ahí, tendrémos que deshabilitar la herencia y permitir solo al grupo que queramos el acceso a esa carpeta confidencial
+   <img width="767" height="520" alt="image" src="https://github.com/user-attachments/assets/b4cdbf8b-f960-4792-9cef-1d2697203f27" />
+3. 
 
 ```
 recep01_temp → GR_Recepción
 mant01_temp → GR_Mantenimiento
 ```
 
-3. Asignar permisos NTFS y recursos compartidos a grupos.
+3. Asignar permisos y recursos compartidos a grupos.
+También crearé unos usuarios invitados para los ordenadores, para el caso en el que alguien quiera realizar algo sin ser un trabajador.
+<img width="428" height="372" alt="image" src="https://github.com/user-attachments/assets/6b45d703-dad0-43d5-8b6c-ad062d433fc5" />
+
+
+La contraseña de estos se les dará a los usuarios que quieran utilizarlo y seran cambiados periodicamente.
+```
+Guest01 -> Pass: akL%w?q315Xm...
+```
 
 ✅ Criterio cubierto: CE f
 
@@ -205,15 +219,11 @@ Identificar usuarios y grupos especiales.
 
 ## Pasos
 
-1. Revisar cuentas:
+- Revisar cuentas:
+   * Invitados (Guest) → Deshabilitar
+    <img width="359" height="455" alt="image" src="https://github.com/user-attachments/assets/902b6164-1b64-4467-8f7b-436e5f819a16" />
 
-   * Administrator → Renombrar
-   * Guest → Deshabilitar
-2. Revisar grupos:
-
-   * Domain Admins
-   * Enterprise Admins
-3. Documentar estado de seguridad.
+En un entorno real y no ficticio como este tendremos que revisar que solo puedan acceder usuarios autorizados y deshabilitar todos los que no pertenezcan a este uno.
 
 ✅ Criterio cubierto: CE g
 
