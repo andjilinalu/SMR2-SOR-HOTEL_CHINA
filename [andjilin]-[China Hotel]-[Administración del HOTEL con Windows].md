@@ -189,10 +189,12 @@ Gestionar la pertenencia de usuarios a grupos.
 1. Creamos la carpeta confindencial y una vez creada vamos a:
    Propiedades -> Seguridad
 2. Una vez ahí, tendrémos que deshabilitar la herencia y permitir solo al grupo que queramos el acceso a esa carpeta confidencial
-   <img width="767" height="520" alt="image" src="https://github.com/user-attachments/assets/b4cdbf8b-f960-4792-9cef-1d2697203f27" />
-3. Añadiremos el grupo que tendrá permisos para esa carpeta
-   <img width="354" height="445" alt="image" src="https://github.com/user-attachments/assets/09e72310-4538-4dfa-8473-2d27dca3adfa" />
 
+   <img width="767" height="520" alt="image" src="https://github.com/user-attachments/assets/b4cdbf8b-f960-4792-9cef-1d2697203f27" />
+   
+4. Añadiremos el grupo que tendrá permisos para esa carpeta
+
+   <img width="354" height="445" alt="image" src="https://github.com/user-attachments/assets/09e72310-4538-4dfa-8473-2d27dca3adfa" />
 
 ```
 GR_Finanzas -> Carpeta "Finanzas"
@@ -246,10 +248,15 @@ Y sus debidos grupos:
 
 
 1. En el explorador de archivos vamos al disco (C:\) y creamos una carpeta:
+2. 
   <img width="740" height="575" alt="image" src="https://github.com/user-attachments/assets/98d5ba18-b214-495c-a3b8-042371454fce" />
-2. Vamos a propiedades, pestaña compartir y en uso compartido avanzado marcamos compartir esta carpeta.
+  
+3. Vamos a propiedades, pestaña compartir y en uso compartido avanzado marcamos compartir esta carpeta.
+   
 <img width="368" height="486" alt="image" src="https://github.com/user-attachments/assets/d8f12ba9-aad1-4a93-8c54-4b7aa0c34678" />
-3. En permisos eliminamos Everyone (Todos) y añadimos Usuarios Autentificados y Administradores.
+
+4. En permisos eliminamos Everyone (Todos) y añadimos Usuarios Autentificados y Administradores.
+
    <img width="364" height="227" alt="image" src="https://github.com/user-attachments/assets/3cacdfdd-13a9-4ed4-ae0a-48aba1e06fb7" />
 
 Se planificaron e implementaron perfiles móviles creando un recurso compartido en el servidor, configurando los permisos adecuados y asignando la ruta de perfil a los usuarios que requieren movilidad entre distintos equipos
