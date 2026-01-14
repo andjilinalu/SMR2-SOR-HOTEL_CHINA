@@ -190,11 +190,12 @@ Gestionar la pertenencia de usuarios a grupos.
    Propiedades -> Seguridad
 2. Una vez ahí, tendrémos que deshabilitar la herencia y permitir solo al grupo que queramos el acceso a esa carpeta confidencial
    <img width="767" height="520" alt="image" src="https://github.com/user-attachments/assets/b4cdbf8b-f960-4792-9cef-1d2697203f27" />
-3. 
+3. Añadiremos el grupo que tendrá permisos para esa carpeta
+   <img width="354" height="445" alt="image" src="https://github.com/user-attachments/assets/09e72310-4538-4dfa-8473-2d27dca3adfa" />
+
 
 ```
-recep01_temp → GR_Recepción
-mant01_temp → GR_Mantenimiento
+GR_Finanzas -> Carpeta "Finanzas"
 ```
 
 3. Asignar permisos y recursos compartidos a grupos.
@@ -236,18 +237,22 @@ En un entorno real y no ficticio como este tendremos que revisar que solo puedan
 Planificar perfiles móviles.
 
 ## Pasos
+Previamente crearemos Usuarios Autentificados y Administradores.
+<img width="706" height="376" alt="image" src="https://github.com/user-attachments/assets/ec1c4dc9-85a1-40e8-80fd-a9bd9a420718" />
+<img width="708" height="505" alt="image" src="https://github.com/user-attachments/assets/ffa575cb-bfaf-4eb3-85a8-f3cc9d2dfba1" />
+Y sus debidos grupos:
+<img width="442" height="211" alt="image" src="https://github.com/user-attachments/assets/de4336b8-cdae-4992-b95c-b62d95e16d17" />
+<img width="429" height="275" alt="image" src="https://github.com/user-attachments/assets/a436b1e2-c0bd-4dd9-b576-2f207728eab3" />
 
-1. Crear recurso compartido:
 
-```
-\\SERVER\PerfilesMoviles
-```
+1. En el explorador de archivos vamos al disco (C:\) y creamos una carpeta:
+  <img width="740" height="575" alt="image" src="https://github.com/user-attachments/assets/98d5ba18-b214-495c-a3b8-042371454fce" />
+2. Vamos a propiedades, pestaña compartir y en uso compartido avanzado marcamos compartir esta carpeta.
+<img width="368" height="486" alt="image" src="https://github.com/user-attachments/assets/d8f12ba9-aad1-4a93-8c54-4b7aa0c34678" />
+3. En permisos eliminamos Everyone (Todos) y añadimos Usuarios Autentificados y Administradores.
+   <img width="364" height="227" alt="image" src="https://github.com/user-attachments/assets/3cacdfdd-13a9-4ed4-ae0a-48aba1e06fb7" />
 
-2. Configurar perfiles móviles para:
-
-   * Dirección
-   * Mantenimiento
-3. Definir rutas en propiedades del usuario.
+Se planificaron e implementaron perfiles móviles creando un recurso compartido en el servidor, configurando los permisos adecuados y asignando la ruta de perfil a los usuarios que requieren movilidad entre distintos equipos
 
 ✅ Criterio cubierto: CE h
 
@@ -286,15 +291,3 @@ D --> E[Asignar permisos]
 E --> F[Auditoría y seguridad]
 ```
 
----
-
-# ✅ Síntesis Final
-
-Este proyecto cumple íntegramente el **RA2**, demostrando:
-
-* Gestión avanzada de usuarios
-* Diseño correcto de grupos
-* Seguridad y movilidad
-* Uso competente de herramientas de administración
-
-📁 Documento listo para **GitHub (.md)**
