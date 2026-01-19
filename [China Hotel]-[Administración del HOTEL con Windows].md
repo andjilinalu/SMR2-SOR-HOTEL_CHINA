@@ -243,7 +243,9 @@ Planificar perfiles móviles.
 Previamente crearemos Usuarios Autentificados y Administradores.
 <img width="706" height="376" alt="image" src="https://github.com/user-attachments/assets/ec1c4dc9-85a1-40e8-80fd-a9bd9a420718" />
 <img width="708" height="505" alt="image" src="https://github.com/user-attachments/assets/ffa575cb-bfaf-4eb3-85a8-f3cc9d2dfba1" />
+
 Y sus debidos grupos:
+
 <img width="442" height="211" alt="image" src="https://github.com/user-attachments/assets/de4336b8-cdae-4992-b95c-b62d95e16d17" />
 <img width="429" height="275" alt="image" src="https://github.com/user-attachments/assets/a436b1e2-c0bd-4dd9-b576-2f207728eab3" />
 
