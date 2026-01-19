@@ -113,6 +113,7 @@ Gestionar cuentas de equipo del dominio.
 ## Pasos
 
 1. Unir equipos al dominio:
+   el poder unir todos los equipos al mismo dominio del hotel nos ayuda a mejorar la gestion de los dispositvos.
 
 ```
 tailwindtraders.internal
