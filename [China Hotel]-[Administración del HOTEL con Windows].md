@@ -227,7 +227,7 @@ Identificar usuarios y grupos especiales.
    * Invitados (Guest) → Deshabilitar
     <img width="359" height="455" alt="image" src="https://github.com/user-attachments/assets/902b6164-1b64-4467-8f7b-436e5f819a16" />
 
-En un entorno real y no ficticio como este tendremos que revisar que solo puedan acceder usuarios autorizados y deshabilitar todos los que no pertenezcan a este uno.
+En un entorno real y no ficticio como este tendremos que revisar que solo puedan acceder usuarios autorizados y deshabilitar todos los que no pertenezcan a este uno, esto se hace por temas de seguridad de nustro contenido confidencial.
 
 ✅ Criterio cubierto: CE g
 
