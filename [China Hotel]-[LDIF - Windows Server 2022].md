@@ -25,5 +25,10 @@ PS C:\Windows\system32>
 ldifde -f usuarios.ldf
 ```
 ---
- ## 2️ ejecutar el comando
+ ## 3 comprobacion del archivo
+
+ una ves ejecutado el anterior comando verificamos que este con el comando:
+ ```powershell
+dir
+```
  <img width="1253" height="560" alt="Captura de pantalla 2026-01-21 122903" src="https://github.com/user-attachments/assets/b4a7b421-3e59-4e1e-ad27-97ce6ab32960" />
