@@ -175,24 +175,38 @@ Añadimos al final de este uno:
 
 # Creamos Usuarios del hotel
 ## Crear usuarios Linux
-
+```
 sudo useradd -M -s /sbin/nologin liwei
 sudo useradd -M -s /sbin/nologin chen
 sudo useradd -M -s /sbin/nologin zhang
+```
+<img width="643" height="69" alt="image" src="https://github.com/user-attachments/assets/a6815c5f-2415-4011-96c5-11b988abd6b9" />
+
 
 ## Asignar a grupos
+
+```
 sudo usermod -aG Recepcion liwei
 sudo usermod -aG RRHH chen
 sudo usermod -aG Gerencia zhang
+```
+<img width="678" height="54" alt="image" src="https://github.com/user-attachments/assets/c0a5da80-65d5-4f36-9872-66fba7c8a9f5" />
 
 ## Contraseñas
+```
 sudo passwd liwei
 sudo passwd chen
 sudo passwd zhang
+```
+<img width="576" height="204" alt="image" src="https://github.com/user-attachments/assets/405ad789-05a6-4b35-a10b-6dc77cb9d927" />
+
 
 ## Reiniciarmos los servicios
+```
 sudo systemctl restart smbd nmbd
 sudo systemctl status smbd
+```
+<img width="956" height="362" alt="image" src="https://github.com/user-attachments/assets/0c71aca7-88f7-4109-ad91-f15257cc4a30" />
 
 # Tarea 4 - Compartir Impresora (CE d)
 Instalar CUPS:
