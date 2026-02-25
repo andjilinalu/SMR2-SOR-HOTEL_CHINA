@@ -91,6 +91,11 @@ sudo mkdir -p /srv/chinahotel/gestion_nominas
 sudo mkdir -p /srv/chinahotel/informes_direccion
 sudo mkdir -p /srv/chinahotel/soporte_tecnico
 ```
+
+<img width="717" height="70" alt="image" src="https://github.com/user-attachments/assets/efc62ab4-7a2f-4bbe-bb29-168eb740f41d" />
+
+
+
 ## Crear grupos
 ```
 sudo groupadd Recepcion
@@ -98,6 +103,10 @@ sudo groupadd RRHH
 sudo groupadd Gerencia
 sudo groupadd Mantenimiento
 ```
+
+<img width="532" height="63" alt="image" src="https://github.com/user-attachments/assets/e3b23350-ed0a-4934-8246-6efc9013c8ef" />
+
+
 ## Asignar grupos a carpetas
 ```
 sudo chown :Recepcion /srv/chinahotel/registro_huespedes
@@ -105,6 +114,10 @@ sudo chown :RRHH /srv/chinahotel/gestion_nominas
 sudo chown :Gerencia /srv/chinahotel/informes_direccion
 sudo chown :Mantenimiento /srv/chinahotel/soporte_tecnico
 ```
+
+<img width="782" height="67" alt="image" src="https://github.com/user-attachments/assets/6ae370d8-a69a-4bbe-b1f3-f248aae67ce8" />
+
+
 ## Permisos del sistema
 ```
 sudo chmod 750 /srv/chinahotel/registro_huespedes
@@ -112,6 +125,10 @@ sudo chmod 770 /srv/chinahotel/gestion_nominas
 sudo chmod 770 /srv/chinahotel/informes_direccion
 sudo chmod 770 /srv/chinahotel/soporte_tecnico
 ```
+
+<img width="765" height="68" alt="image" src="https://github.com/user-attachments/assets/a900a610-9bb8-4426-b02d-4ee9c7319bf6" />
+
+
 ## Configuración de Samba
 Aquí editamos el archivo:
 /etc/samba/smb.conf
@@ -153,8 +170,12 @@ Añadimos al final de este uno:
    create mask = 0660
    directory mask = 0770
 ```
+
+<img width="956" height="555" alt="image" src="https://github.com/user-attachments/assets/3cf5b8ca-fc8e-4757-8d97-735d001e00ad" />
+
 # Creamos Usuarios del hotel
 ## Crear usuarios Linux
+
 sudo useradd -M -s /sbin/nologin liwei
 sudo useradd -M -s /sbin/nologin chen
 sudo useradd -M -s /sbin/nologin zhang
