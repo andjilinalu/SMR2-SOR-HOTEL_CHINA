@@ -1,108 +1,242 @@
-# Gestión de Recursos Compartidos en GNU/Linux con Samba
-
-[Reto 0x: Gestionar los recursos compartidos SAMBA](https://aules.edu.gva.es/fp/mod/assign/view.php?id=9934089)
-
----
-
-## 🎯 Objetivo
-El objetivo es gestionar los recursos compartidos del sistema, creando una estructura de carpetas de red lógica y segura, e interpretando especificaciones y determinando los niveles de seguridad  que rigen el acceso.
-
- ---
-
-# 🧩 Relación con Resultados de Aprendizaje
-**RA4.** Gestiona los recursos compartidos del sistema, interpretando especificaciones y determinando niveles de seguridad.
+# China Hotel - Gestión de Recursos Compartidos con Samba
+## Ubuntu Server 24.04 en VirtualBox
 
 ---
 
-# 🏨 Contexto del Proyecto
-El **ChinaHotel** está optimizando su infraestructura de red para asegurar que la información sensible (reservas, nóminas, informes de gestión) y los recursos de impresión sean accesibles solo por el personal  autorizado.
+# RA4 - Gestión de Recursos Compartidos
+
+## Resultado de Aprendizaje
+Gestionar los recursos compartidos del sistema, interpretando especificaciones y determinando niveles de seguridad.
+
+## Criterios de Evaluación
+- a) Diferenciar permiso y derecho
+- b) Identificar recursos a compartir
+- c) Asignar permisos correctamente
+- d) Compartir impresoras en red
+- e) Utilizar entorno gráfico
+- f) Establecer niveles de seguridad efectivos
+- g) Validar el acceso en grupo
 
 ---
 
-#### Tareas Operativas Críticas
-Cada una de las siguientes tareas es fundamental para el despliegue seguro y funcional de los recursos del hotel:
- 
-> - Tarea 1: Clasificación de Roles de Seguridad (CE a)
+# Contexto: China Hotel
 
-> - Tarea 2: Inventario y Planificación de Recursos (CE b)
+El **China Hotel** ha decidido implementar un servidor de archivos para organizar y proteger la información interna.
 
-> - Tarea 3: Aplicación de Permisos de Carpeta (CE c)
+Se almacenarán:
+- Datos de huéspedes
+- Nóminas del personal
+- Informes de dirección
+- Documentación técnica
+- Recursos de impresión
 
-> - Tarea 4: Despliegue del Servicio de Impresión (CE d)
-
-> - Tarea 6: Determinación de la Seguridad Resultante (CE f)
-
-> - Tarea 7: Validación de Acceso Funcional (CE g))
-
+El servidor se implementa en **Ubuntu Server 24.04 dentro de VirtualBox** usando **Samba**.
 
 ---
 
-#🧑‍💼 Tarea 1: Clasificación de Roles de Seguridad (CE a)
+# Tarea 1 - Diferencia entre Permiso y Derecho (CE a)
 
-#### diferencia entre permiso y derecho
+## Permiso
+Un permiso define el acceso a un recurso.
 
--Permiso: es el acceso sobre un recurso específico.
-Ejemplo:
+Ejemplos:
+- Leer archivos
+- Escribir en una carpeta
+- Modificar documentos
 
- - permiso de lectura a un arcivo
- - permiso de escrtura y lectura a una carpeta
- - permiso de ejecucion a la impresora
+Ejemplo en China Hotel:
+El grupo Recepción puede leer la carpeta de huéspedes.
+
+## Derecho
+Un derecho define acciones dentro del sistema.
+
+Ejemplos:
+- Iniciar sesión en el servidor
+- Apagar el sistema
+- Administrar servicios
+
+Conclusión:
+- Permiso → acceso a archivos
+- Derecho → acciones del usuario en el sistema
+
+---
+
+# Tarea 2 - Recursos a Compartir (CE b)
+
+| Recurso | Departamento | Acceso |
+|---|---|---|
+| registro_huespedes | Recepción | Solo lectura |
+| gestion_nominas | RRHH y Gerencia | Lectura y escritura |
+| informes_direccion | Gerencia | Lectura y escritura |
+| soporte_tecnico | Mantenimiento | Lectura y escritura |
+
+---
+
+# Instalación de Samba
+
+## 1. Actualizar el sistema
 
 ```bash
-chmod 770 carpeta
+sudo apt update && sudo apt upgrade -y
 ```
+## 2. Instalar Samba
+```
+sudo apt install samba smbclient cifs-utils -y
+```
+# Tarea 3 - Crear Estructura del China Hotel (CE c)
+## Crear carpetas
+```
+sudo mkdir -p /srv/chinahotel/registro_huespedes
+sudo mkdir -p /srv/chinahotel/gestion_nominas
+sudo mkdir -p /srv/chinahotel/informes_direccion
+sudo mkdir -p /srv/chinahotel/soporte_tecnico
+```
+## Crear grupos
+```
+sudo groupadd Recepcion
+sudo groupadd RRHH
+sudo groupadd Gerencia
+sudo groupadd Mantenimiento
+```
+## Asignar grupos a carpetas
+```
+sudo chown :Recepcion /srv/chinahotel/registro_huespedes
+sudo chown :RRHH /srv/chinahotel/gestion_nominas
+sudo chown :Gerencia /srv/chinahotel/informes_direccion
+sudo chown :Mantenimiento /srv/chinahotel/soporte_tecnico
+```
+## Permisos del sistema
+```
+sudo chmod 750 /srv/chinahotel/registro_huespedes
+sudo chmod 770 /srv/chinahotel/gestion_nominas
+sudo chmod 770 /srv/chinahotel/informes_direccion
+sudo chmod 770 /srv/chinahotel/soporte_tecnico
+```
+## Configuración de Samba
+Aquí editamos el archivo:
+/etc/samba/smb.conf
+Para ello ejecutaremos:
+```
+sudo nano /etc/samba/smb.conf
+```
+Añadimos al final de este uno:
+```
+[Registro_Huespedes]
+   path = /srv/chinahotel/registro_huespedes
+   browsable = yes
+   writable = no
+   valid users = @Recepcion
+   create mask = 0640
+   directory mask = 0750
 
--Derecho: Se refiere a privilegios del sistema operativo.
+[Gestion_Nominas]
+   path = /srv/chinahotel/gestion_nominas
+   browsable = no
+   writable = yes
+   valid users = @RRHH @Gerencia
+   create mask = 0660
+   directory mask = 0770
+
+[Informes_Direccion]
+   path = /srv/chinahotel/informes_direccion
+   browsable = yes
+   writable = yes
+   valid users = @Gerencia
+   create mask = 0660
+   directory mask = 0770
+
+[Soporte_Tecnico]
+   path = /srv/chinahotel/soporte_tecnico
+   browsable = yes
+   writable = yes
+   valid users = @Mantenimiento
+   create mask = 0660
+   directory mask = 0770
+```
+# Creamos Usuarios del hotel
+## Crear usuarios Linux
+sudo useradd -M -s /sbin/nologin liwei
+sudo useradd -M -s /sbin/nologin chen
+sudo useradd -M -s /sbin/nologin zhang
+
+## Asignar a grupos
+sudo usermod -aG Recepcion liwei
+sudo usermod -aG RRHH chen
+sudo usermod -aG Gerencia zhang
+
+## Contraseñas
+sudo passwd liwei
+sudo passwd chen
+sudo passwd zhang
+
+## Reiniciarmos los servicios
+sudo systemctl restart smbd nmbd
+sudo systemctl status smbd
+
+# Tarea 4 - Compartir Impresora (CE d)
+Instalar CUPS:
+```
+sudo apt install cups -y
+```
+Editar configuración:
+```
+sudo nano /etc/cups/cupsd.conf
+```
+Permitir red local:
+```
+Listen 631
+<Location />
+  Allow @LOCAL
+</Location>
+```
+Reiniciar:
+```
+sudo systemctl restart cups
+```
+Acceso desde navegador:
+```
+http://IP_SERVIDOR:631
+```
+Crear impresora:
+Impresora_BackOffice_ChinaHotel
+
+# Tarea 5 - Compartición desde Entorno Gráfico (CE e)
+Si se instala GUI:
+```
+sudo apt install ubuntu-desktop -y
+```
+Pasos:
+
+1. Click derecho en carpeta
+2. Propiedades
+3. Compartir en red
+4. Activar compartir
 
 Ejemplo:
- - Derecho a inicar sesion
- - Derecho a administrar Samba
- - Derecho a apagar el servidor
+Carpeta: marketing_eventos
 
----
+# Tarea 6 - Seguridad Efectiva (CE f)
+La seguridad final es el permiso más restrictivo entre:
 
-#🧑‍💼 Tarea 2:  Inventario y Planificación de Recursos (CE b)
+Permisos Linux
 
-##objetivo
+Permisos Samba
 
-identificar qué necesita ser compartido y bajo qué condiciones iniciales.
+Ejemplo:
+Si Samba permite escribir pero Linux solo lectura → el usuario solo podrá leer.
 
-###Pasos
+# Tarea 7 - Validación de Acceso (CE g)
+| Usuario | Departamento | Acceso esperado    |
+| ------- | ------------ | ------------------ |
+| liwei   | Recepción    | Registro_Huespedes |
+| chen    | RRHH         | Gestion_Nominas    |
+| zhang   | Gerencia     | Informes_Direccion |
 
-Antes de todo tenemos que empezar instalando samba con los siguientes comandos:
-
-```powershell
-sudo apt update
-sudo apt upgrade -y
-sudo apt install samba -y
+Desde Windows o Linux:
 ```
-
-comprobamos que este instalado:
-
-```powershell
-sudo systemctl status smbd
+\\IP_SERVIDOR\Registro_Huespedes
 ```
+Verificar:
 
-
-1. Datos_Huespedes
-  Creamos la carpeta Datos huespedes con el comando mkdir
-```powershell
-/srv/samba/Datos_Huespedes
-```
-
-3. 
-4. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-Accesos permitidos
+-Accesos denegados correctamente
