@@ -238,7 +238,15 @@ Impresora_BackOffice_ChinaHotel
 # Tarea 5 - Compartición desde Entorno Gráfico (CE e)
 Si se instala GUI:
 ```
+sudo dpkg --configure -a
+sudo apt -f install
+sudo apt update
 sudo apt install ubuntu-desktop -y
+```
+despues reinciamo el sistema:
+
+```
+sudo reboot
 ```
 Pasos:
 
